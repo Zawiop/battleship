@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-
+static int[][] grid = new int[9][9];
 public class VisualPanel {
 
 }
