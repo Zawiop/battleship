@@ -7,9 +7,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-/**
-* Is the actual Panel
-*/
+
 public class ButtonPanel 
 {
    /**
