@@ -20,7 +20,7 @@ public class FinalProjectDriver
    public static void main(String[] args)
    {
       
-      new finalDriverPanel();
+      new finalPanel();
         
    }
 }

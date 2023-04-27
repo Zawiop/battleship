@@ -9,23 +9,30 @@
 
 
 public class boardArray {
+    
    /**
    * The 2-d array that represents the scoreboard itself
    */
+
     private int[][] scoreboard;
    /**
    * Takes a move that has happened, and is applied to the array itself
    */
+    
     public void setMove(int guess, int value)
     {
     }
+    
+    
     /**
    * Checks if the selected position has a ship or not, simplifies lots of operations (false is a placeholder)
    */
+    
     public boolean isShip(String position)
     {
       return false;
     }
+    
     /**
    * Gets the entire 2D array and makes it accessible
    */
@@ -33,4 +40,6 @@ public class boardArray {
     {
       return null;
     }
+    
+
 }
