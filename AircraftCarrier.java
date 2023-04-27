@@ -7,7 +7,8 @@
 	****************************************************************/
 
 
-public class Destroyer extends Battleships{
+
+public class AircraftCarrier extends Battleships{      
    /**
    * Boat's x coordinate
    */
@@ -17,11 +18,12 @@ public class Destroyer extends Battleships{
    * Boat's y coordinate
    */
       private int myY;
-      
+   
    /**
    * Sets the boat's x and y coordinates
    */
-      public Destroyer(int x, int y)
+      
+      public AircraftCarrier(int x, int y)
       {
          myX = x;
          myY = y;
@@ -42,3 +44,9 @@ public class Destroyer extends Battleships{
       {
       }
 }   
+   
+  
+
+
+
+

@@ -18,6 +18,10 @@ public class Cruiser extends Battleships{
    * Boat's y coordinate
    */
       private int myY;
+      
+   /**
+   * Sets the boat's x and y coordinates
+   */
       public Cruiser(int x, int y)
       {
          myX = x;

@@ -16,11 +16,11 @@ public class ButtonPanel
    public ButtonPanel()
    {
    }
-      /**
+   /**
    * The listener for the helpMenu, opens up some general instructions
    */
    private class helpMenu implements ActionListener {
-       /**
+      /**
       * What the help menu button will actually do 
       */
        public void actionPerformed(ActionEvent e) {

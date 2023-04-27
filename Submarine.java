@@ -19,6 +19,10 @@ public class Submarine extends Battleships{
    * Boat's y coordinate
    */
       private int myY;
+   
+   /**
+   * Sets the boat's x and y coordinates
+   */   
       public Submarine(int x, int y)
       {
          myX = x;
