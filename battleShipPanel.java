@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class battleShipPanel {
+public class BattleShipPanel {
     int[][] scoreBoard = new int[9][9];
     for(int x =0; x < 10; x++){
         for(int y = 0; y < 10; y++){
@@ -18,14 +18,4 @@ public class battleShipPanel {
 
 }
 
-private class helpMenu implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-    }
-}
-private class setShips implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-    }
-private class confirmShot implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-    }
-}
+
