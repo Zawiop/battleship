@@ -8,7 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ButtonPanel 
+
+
+public class ButtonPanel
 {
    /**
    * Where all elements will be added, including the helpMenu button, the setShips button and the confirmShot button
@@ -24,6 +26,7 @@ public class ButtonPanel
       * What the help menu button will actually do 
       */
        public void actionPerformed(ActionEvent e) {
+         
        }
    }
    
@@ -36,6 +39,10 @@ public class ButtonPanel
        * What the setShips button will actually do 
        */
        public void actionPerformed(ActionEvent e) {
+         HelpPanelContainer def = new HelpPanelContainer();
+         JPanel panel = def.newJpanel();
+         //frame.add(panel); 
+         //whenever we add the frame in
        }
    
    /**
