@@ -14,6 +14,7 @@ import java.awt.event.*;
 
 public class FinalPanel extends JPanel {
    static boolean gameStarted = false;
+   static JFrame frame = new JFrame("Battleship");
    
    /**
    * Where all elements will be instantiated and added, located in the constructor for default behavior
@@ -58,7 +59,14 @@ public class FinalPanel extends JPanel {
     
 }
    public static void main(String[] args)  throws MalformedURLException {
-   
+     
+      frame.setSize(1500, 600);
+      frame.setLocation(0, 0);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+      frame.setContentPane(new FinalPanel());
+      frame.setVisible(true);
    }
   
 
@@ -67,9 +75,9 @@ public class FinalPanel extends JPanel {
       * What the help menu button will actually do 
       */
        public void actionPerformed(ActionEvent e) {
-         HelpPanelContainer def = new HelpPanelContainer();
-         JPanel panel = def.newJpanel();
-         //frame.add(panel); 
+         
+         JOptionPane.showMessageDialog(frame,"How to play Battleship: \n" +"First you must place your ships on the grid, and once you have set them, press the set ships button. Next, your oppponent, a AI, will place their ships in location. \n"+ "Soon after you get to fire at the opponents grid in alternating turns, each shot hitting one tile and letting you know if you hit or miss.", "Help Menu"
+         , JOptionPane.QUESTION_MESSAGE,null);
          //whenever we add the frame in
        }
    }  
