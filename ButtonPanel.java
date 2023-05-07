@@ -39,8 +39,8 @@ public class ButtonPanel
        * What the setShips button will actually do 
        */
        public void actionPerformed(ActionEvent e) {
-         HelpPanelContainer def = new HelpPanelContainer();
-         JPanel panel = def.newJpanel();
+         //HelpPanelContainer def = new HelpPanelContainer();
+        // JPanel panel = def.newJpanel();
          //frame.add(panel); 
          //whenever we add the frame in
        }

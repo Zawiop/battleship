@@ -21,22 +21,35 @@ public class FinalPanel extends JPanel {
    */
    public FinalPanel()
    {
-   
+      this.setLayout(null);
+      gameStart();
    
    }
-   public void gameStart(Graphics g) {
+   public void gameStart() {
       if(gameStarted == false) {
          JButton help = new JButton("Instructions Menu");
          JButton set = new JButton("Set Ships");
          JButton reset = new JButton("Reset Board");
          help.addActionListener(new helpMenu());
+         set.addActionListener(new setShips());
+         reset.addActionListener(new resetShips());
+         set.setBounds(700, 50, 150, 25);
+         help.setBounds(700, 0, 150, 25);
+         reset.setBounds(700, 100, 150, 25);
          
          add(help);
+         add(set);
+         add(reset);
 
          ImageIcon icon = new ImageIcon("board.JPG");
          JLabel label = new JLabel(icon);
-         label.setBounds(-20,-20, 640,640);
-         add(label);
+         label.setBounds(-20, -20, 640,640);
+         //add(label);
+
+         ImageIcon sub = new ImageIcon("Subarmine.PNG");
+         JLabel subLabel = new JLabel(icon);
+         subLabel.setBounds(-20, -20, 640,640);
+         add(subLabel);
          
 
 
@@ -54,8 +67,9 @@ public class FinalPanel extends JPanel {
    
    }
    public void paintComponent(Graphics g) {
-      gameStart(g);
-      playGame(g);
+      super.paintComponent(g);
+      //gameStart(g);
+     // playGame(g);
     
 }
    public static void main(String[] args)  throws MalformedURLException {
@@ -80,6 +94,23 @@ public class FinalPanel extends JPanel {
          , JOptionPane.QUESTION_MESSAGE,null);
          //whenever we add the frame in
        }
-   }  
+   }
+   private class setShips implements ActionListener {
+      /**
+      * What the setShips button will actually do 
+      */
+      public void actionPerformed(ActionEvent e) {
+        
+        
+      }  
+   }
+   private class resetShips implements ActionListener {
+      /**
+      * What the setShips button will actually do 
+      */
+      public void actionPerformed(ActionEvent e) {
+        
+      }
+   }
 }
 
