@@ -10,6 +10,10 @@ import java.awt.*;
 import java.util.concurrent.TimeUnit;
 import java.net.*;
 import java.awt.event.*;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 
 
 public class FinalPanel extends JPanel {
@@ -41,14 +45,14 @@ public class FinalPanel extends JPanel {
          add(set);
          add(reset);
 
-         ImageIcon icon = new ImageIcon("board.JPG");
-         JLabel label = new JLabel(icon);
-         label.setBounds(-20, -20, 640,640);
-         //add(label);
+         ImageIcon board = new ImageIcon("board.JPG");
+         JLabel boardLabel = new JLabel(board);
+         boardLabel.setBounds(-20, -20, 640,640);
+         //add(boardLabel);
 
-         ImageIcon sub = new ImageIcon("Subarmine.PNG");
-         JLabel subLabel = new JLabel(icon);
-         subLabel.setBounds(-20, -20, 640,640);
+         ImageIcon sub = new ImageIcon("Submarine.PNG");
+         JLabel subLabel = new JLabel(rotateIcon(sub,270));
+         subLabel.setBounds(20, 20, 640,640);
          add(subLabel);
          
 
@@ -112,5 +116,24 @@ public class FinalPanel extends JPanel {
         
       }
    }
-}
 
+private ImageIcon rotateIcon(ImageIcon icon, int angle) {
+   Image image = icon.getImage();
+   int width = image.getWidth(null);
+   int height = image.getHeight(null);
+
+   BufferedImage rotatedImage = new BufferedImage(height, width, BufferedImage.TYPE_INT_ARGB);
+   Graphics2D g2d = rotatedImage.createGraphics();
+
+   g2d.translate(height / 2, width / 2);
+   g2d.rotate(Math.toRadians(angle));
+   g2d.translate(-width / 2, -height / 2);
+
+   g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+   g2d.drawImage(image, 0, 0, null);
+   g2d.dispose();
+
+   return new ImageIcon(rotatedImage);
+
+   }
+}
