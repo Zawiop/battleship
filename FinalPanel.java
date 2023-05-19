@@ -67,19 +67,26 @@ public class FinalPanel extends JPanel {
    
    public int search(int[][] array, int x, int y)
    {
-      int returnVal = -99;
-      for(int z = 0; z < 100; z++)
-      {
-         // System.out.println("" + array[z][0] + " " + array[z][1] + " " + array[z][2] + " " + array[z][3]);
-//          System.out.println(x + "");
-         if((x > array[z][0] && x < array[z][2]) && (y > array[z][1] && x < array[z][3]))
-         {
-            returnVal = z;
-         } 
-      }
+      // int returnVal = -99;
+//       for(int a = 0; a < 10; a++)
+//       {
+//          for(int x = 0; x < 10; x++) {
+//             int n = 10*a + x;
+//             System.out.println("" + n);
+//             
+//             boundsArray[n][0] = counterX;
+//             boundsArray[n][1] = counterY;
+//             boundsArray[n][2] = counterX + aN;
+//             boundsArray[n][3] = counterY + aN;
+//             counterX = counterX + aN;
+//          }
+//       counterX = 70;
+//       counterY += aN;
+      return 4;
+ 
       
+
       
-      return returnVal;    
    
    }
    
@@ -91,9 +98,7 @@ public class FinalPanel extends JPanel {
                public void mouseClicked(MouseEvent e) {
                   xClicked = e.getX();
                   yClicked = e.getY();
-                  System.out.println(search(boundsArray, xClicked, yClicked));
-                  System.out.println(xClicked + " " + yClicked);
-                  System.out.println(boundsArray[14][0] + " " + boundsArray[14][1] + " " + boundsArray[14][2] + " " + boundsArray[14][3]);
+//                   System.out.println(search(boundsArray, xClicked, yClicked));
                   if(((xClicked > xTL1) && (xClicked < xBR1)) && ((xClicked < xBR1) && (xClicked < xBR1)))
                   {
                   
@@ -107,7 +112,16 @@ public class FinalPanel extends JPanel {
                      {
                      for(int x = 0; x < 10; x++) {
                         int n = 10*y + x;
-                        boundsArray[n][0] = counterX;
+                        
+                        boolean bool1 = x > boundsArray[n][0];
+                        boolean bool2 = y < boundsArray[n][1];
+                        boolean bool3 = x < boundsArray[n][2];
+                        boolean bool4 = y > boundsArray[n][3];
+                        
+                        
+                        System.out.println(bool1 + " " + bool2 + " " + bool3 + " " + bool4);
+                        System.out.println(boundsArray[n][0] + " " + boundsArray[n][1] + " " + boundsArray[n][2] + " " + boundsArray[n][3]);
+                        
                         boundsArray[n][1] = counterY;
                         boundsArray[n][2] = counterX + aN;
                         boundsArray[n][3] = counterY + aN;
