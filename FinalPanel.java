@@ -21,6 +21,8 @@ public class FinalPanel extends JPanel {
    static JFrame frame = new JFrame("Battleship");
    static int xClicked, yClicked, counterX, counterY, xCount;
    static int[][] boundsArray = new int[100][4];
+   static JLabel c2label, boardLabel;
+   static int carrierRotation = 1;
    
    static int xTL1 = 70;
    static int yTL1 = 64;
@@ -67,22 +69,14 @@ public class FinalPanel extends JPanel {
    
    public int search(int[][] array, int x, int y)
    {
-      // int returnVal = -99;
-//       for(int a = 0; a < 10; a++)
-//       {
-//          for(int x = 0; x < 10; x++) {
-//             int n = 10*a + x;
-//             System.out.println("" + n);
-//             
-//             boundsArray[n][0] = counterX;
-//             boundsArray[n][1] = counterY;
-//             boundsArray[n][2] = counterX + aN;
-//             boundsArray[n][3] = counterY + aN;
-//             counterX = counterX + aN;
-//          }
-//       counterX = 70;
-//       counterY += aN;
-      return 4;
+      for(int z = 0; z < 100; z++) {
+         if(x > array[z][0] && x < array[z][2] && y > array[z][1] && y < array[z][3]) {
+            return z;
+         }
+
+      }
+      return -1;
+      
  
       
 
@@ -98,38 +92,67 @@ public class FinalPanel extends JPanel {
                public void mouseClicked(MouseEvent e) {
                   xClicked = e.getX();
                   yClicked = e.getY();
-//                   System.out.println(search(boundsArray, xClicked, yClicked));
-                  if(((xClicked > xTL1) && (xClicked < xBR1)) && ((xClicked < xBR1) && (xClicked < xBR1)))
-                  {
-                  
-                  }
+
                   
                   counterX = 70;
                   counterY = 64;
                   xCount = 0;
                   int aN = 47;
-                  for(int y = 0; y < 10; y++)
-                     {
-                     for(int x = 0; x < 10; x++) {
-                        int n = 10*y + x;
-                        
-                        boolean bool1 = x > boundsArray[n][0];
-                        boolean bool2 = y < boundsArray[n][1];
-                        boolean bool3 = x < boundsArray[n][2];
-                        boolean bool4 = y > boundsArray[n][3];
-                        
-                        
-                        System.out.println(bool1 + " " + bool2 + " " + bool3 + " " + bool4);
-                        System.out.println(boundsArray[n][0] + " " + boundsArray[n][1] + " " + boundsArray[n][2] + " " + boundsArray[n][3]);
-                        
-                        boundsArray[n][1] = counterY;
-                        boundsArray[n][2] = counterX + aN;
-                        boundsArray[n][3] = counterY + aN;
-                        counterX = counterX + aN;
-                     }
-                     counterX = 70;
-                     counterY += aN;
+                 
              
+                  int searched= search(boundsArray, xClicked, yClicked);
+                  ImageIcon cruiser = new ImageIcon("cruiserNoBG.png");
+                  Image c2Scale, c2Scaled;
+                  int scaled = 0;
+                  if(searched != -1){
+                     if(SwingUtilities.isLeftMouseButton(e)){
+                         c2Scale = cruiser.getImage();
+                          c2Scaled = c2Scale.getScaledInstance(140, 45, java.awt.Image.SCALE_SMOOTH);
+                          carrierRotation = 1;
+
+                  }
+                     else if(SwingUtilities.isRightMouseButton(e)){
+                        if(carrierRotation==1){
+                         c2Scale = rotateIcon(cruiser, 90).getImage();
+                          c2Scaled = c2Scale.getScaledInstance(45, 140, java.awt.Image.SCALE_SMOOTH);
+                          carrierRotation++;
+                        } else if(carrierRotation==2){
+                           c2Scale = rotateIcon(rotateIcon(cruiser, 90),90).getImage();
+                          c2Scaled = c2Scale.getScaledInstance(45, 140, java.awt.Image.SCALE_SMOOTH);
+                          scaled = 47;
+                          carrierRotation++;
+                        } else if(carrierRotation == 3) {
+                           c2Scale = rotateIcon(rotateIcon(rotateIcon(cruiser, 90),90),90).getImage();
+                          c2Scaled = c2Scale.getScaledInstance(45, 140, java.awt.Image.SCALE_SMOOTH);
+                          scaled = 47;
+                          carrierRotation++;
+                        }else if(carrierRotation == 4) {
+                           c2Scale = cruiser.getImage();
+                          c2Scaled = c2Scale.getScaledInstance(45, 140, java.awt.Image.SCALE_SMOOTH);
+                          scaled = 47;
+                          carrierRotation=1;
+                        } else {
+                           c2Scaled = null;
+                        }
+
+                     } else {
+                        c2Scale = null;
+                         c2Scaled = null;
+                        
+                     }
+                     cruiser = new ImageIcon(c2Scaled);
+                     c2label.setVisible(false);
+                     c2label = new JLabel(cruiser);
+                     int x = boundsArray[searched][0];
+                     int y = boundsArray[searched][1];
+                     c2label.setBounds(x-53-188-8 - scaled, y-190-98-8 + scaled, 640, 640);
+                     frame.add(c2label);
+                     Container container = c2label.getParent();
+                     container.setComponentZOrder(c2label, 0);
+                     container.repaint();
+                     
+                     // frame.revalidate();
+                     // frame.repaint();
                   }
                   
                   
@@ -164,7 +187,7 @@ public class FinalPanel extends JPanel {
          add(reset);
       
          ImageIcon board = new ImageIcon("board.JPG");
-         JLabel boardLabel = new JLabel(board);
+          boardLabel = new JLabel(board);
          boardLabel.setBounds(-20, -20, 640,640);
          //add(boardLabel);
       
@@ -197,7 +220,7 @@ public class FinalPanel extends JPanel {
          Image c2Scale = cruiser.getImage();
          Image c2Scaled = c2Scale.getScaledInstance(140, 45, java.awt.Image.SCALE_SMOOTH);
          cruiser = new ImageIcon(c2Scaled);
-         JLabel c2label = new JLabel(cruiser);
+         c2label = new JLabel(cruiser);
          c2label.setBounds(450, 110, 640, 640);
          
          ImageIcon destroyer = new ImageIcon("destroyerNoBG.png");
