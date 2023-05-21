@@ -6,19 +6,19 @@
 	* @version 4/25/23
 	****************************************************************/
 
-
-
+   import javax.swing.*;
+   
 public abstract class Battleships{
       
    /**
    * The Image will show at the specified coordinates
    */
-   public abstract void show(int x, int y);
+   public abstract Object[] show(int carrierRotation, boolean left);
    
    /**
    * The Image will show at the interval of 90 provided
    */
-   public abstract void rotate(int z); 
+   public abstract ImageIcon rotate(ImageIcon icon, int angle); 
    
         
 }
