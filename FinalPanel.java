@@ -16,12 +16,13 @@ import java.awt.image.BufferedImage;
 
 public class FinalPanel extends JPanel {
 static boolean gameStarted = false;
-static JFrame frame = new JFrame("Battleship");
+static JFrame frame = new JFrame("hey");
 static int xClicked, yClicked, counterX, counterY, xCount;
 static int[][] boundsArray = new int[100][4];
-static JLabel c2label = new JLabel();
-static JLabel boardLabel;
+static JLabel boardLabel, c2label, s2label, d2label;
 static int carrierRotation = 1;
+static int subRotation = 1;
+static int destroyerRotation = 1;
 
 static int xTL1 = 70;
 static int yTL1 = 64;
@@ -124,7 +125,7 @@ public void crusierListener(MouseEvent e){
          
       }
       ImageIcon cruiserIcon = new ImageIcon(c2Scaled);
-      c2label.setVisible(false);
+      c2label.setVisible(false); 
 
       c2label = new JLabel(cruiserIcon);
 
@@ -143,13 +144,132 @@ public void crusierListener(MouseEvent e){
    
 
 }
+public void subListener(MouseEvent e){
+
+   xClicked = e.getX();
+   yClicked = e.getY();
+
+   
+   counterX = 70;
+   counterY = 64;
+   xCount = 0;
+   int aN = 47;
+   
+
+   int searched= search(boundsArray, xClicked, yClicked);
+   Image s2Scaled;
+   int scaled = 0;
+   int bounds= 0;
+   Submarine sub = new Submarine("SubmarineNoBG.png", boundsArray, searched);
+   if(searched != -1){
+      
+      if(SwingUtilities.isLeftMouseButton(e)){
+        Object[] array = sub.show(subRotation, true);
+        s2Scaled = (Image) array[0];
+        scaled = Integer.parseInt((String)array[1]);
+        bounds = Integer.parseInt((String)array[2]);
+        subRotation = 1;
+
+      }
+      else if(SwingUtilities.isRightMouseButton(e)){
+         Object[] array = sub.show(subRotation, false);
+         s2Scaled = (Image) array[0];
+         scaled = Integer.parseInt((String)array[1]);
+         bounds = Integer.parseInt((String)array[2]);
+         subRotation++;
+
+      } else {
+            s2Scaled = null;
+         
+      }
+      ImageIcon subIcon = new ImageIcon(s2Scaled);
+      s2label.setVisible(false);
+
+     s2label = new JLabel(subIcon);
+
+      int x = boundsArray[searched][0];
+      int y = boundsArray[searched][1];
+      s2label.setBounds(x-53-188-8 - scaled + bounds, y-190-98-8 + scaled - bounds, 640, 640);
+      frame.add(s2label);
+      c2label.setVisible(true);
+      Container container = s2label.getParent();
+      container.setComponentZOrder(s2label, 0);
+      container.repaint();
+   }
+   
+   
+   
+   
+
+}
+public void destroyerListener(MouseEvent e){
+
+   xClicked = e.getX();
+   yClicked = e.getY();
+
+   
+   counterX = 70;
+   counterY = 64;
+   xCount = 0;
+   int aN = 47;
+   
+
+   int searched= search(boundsArray, xClicked, yClicked);
+   Image d2Scaled;
+   int scaled = 0;
+   int bounds= 0;
+   Destroyer destroyer = new Destroyer("DestroyerNoBG.png", boundsArray, searched);
+   if(searched != -1){
+      
+      if(SwingUtilities.isLeftMouseButton(e)){
+        Object[] array = destroyer.show(destroyerRotation, true);
+        d2Scaled = (Image) array[0];
+        scaled = Integer.parseInt((String)array[1]);
+        bounds = Integer.parseInt((String)array[2]);
+        destroyerRotation = 1;
+
+      }
+      else if(SwingUtilities.isRightMouseButton(e)){
+         Object[] array = destroyer.show(destroyerRotation, false);
+         d2Scaled = (Image) array[0];
+         scaled = Integer.parseInt((String)array[1]);
+         bounds = Integer.parseInt((String)array[2]);
+         destroyerRotation++;
+
+      } else {
+            d2Scaled = null;
+         
+      }
+      ImageIcon deIcon = new ImageIcon(d2Scaled);
+      d2label.setVisible(false);
+
+     d2label = new JLabel(deIcon);
+
+      int x = boundsArray[searched][0];
+      int y = boundsArray[searched][1];
+      d2label.setBounds(x-53-188-8-23 - scaled + bounds, y-190-98-8 + scaled - bounds, 640, 640);
+      frame.add(d2label);
+      d2label.setVisible(true);
+      Container container = d2label.getParent();
+      container.setComponentZOrder(d2label, 0);
+      container.repaint();
+   }
+   
+   
+   
+   
+
+}
+
 
 public void gameStart() {
    if(gameStarted == false) { 
       addMouseListener(
          new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-            crusierListener(e);  
+            //crusierListener(e);
+            //subListener(e);  
+            destroyerListener(e);
             }
                
                
@@ -183,13 +303,13 @@ public void gameStart() {
    
       ImageIcon sub = new ImageIcon("SubmarineNoBG.PNG");
       Image subScaling = sub.getImage();
-      Image newSub = subScaling.getScaledInstance(46, 133, java.awt.Image.SCALE_SMOOTH);
+      Image newSub = subScaling.getScaledInstance(133, 46, java.awt.Image.SCALE_SMOOTH);
       sub = new ImageIcon(newSub);
       //180 degrees
       //JLabel subLabel = new JLabel(rotateIcon(rotateIcon(sub,90), 90));
       //270 degrees
-      JLabel subLabel = new JLabel(rotateIcon(sub, 270));
-      subLabel.setBounds(450, 20, 640,640);
+      s2label = new JLabel(sub);
+      s2label.setBounds(450, 20, 640,640);
       
       
       ImageIcon bship = new ImageIcon("BattleshipNoBG.png");
@@ -217,9 +337,9 @@ public void gameStart() {
       Image dScale = destroyer.getImage();
       Image dScaled = dScale.getScaledInstance(90, 30, java.awt.Image.SCALE_SMOOTH);
       destroyer = new ImageIcon(dScaled);
-      JLabel dlabel = new JLabel(destroyer);
-      //dlabel.setBounds(450, 180, 640, 640);
-      dlabel.setBounds(17, -96, 17 + 190, -96+460); //This is (70, 64) starting point with 190 460 scale applied to it 
+      d2label = new JLabel(destroyer);
+      d2label.setBounds(450, 180, 640, 640);
+      //d2label.setBounds(17, -96, 17 + 190, -96+460); //This is (70, 64) starting point with 190 460 scale applied to it 
       
       ImageIcon frame = new ImageIcon("frameNoBG.png");
       Image fScale = frame.getImage();
@@ -233,11 +353,11 @@ public void gameStart() {
       
       
       add(flabel);
-      add(subLabel);
+      add(s2label);
       add(blabel);
       add(clabel);
       add(c2label);
-      add(dlabel);
+      add(d2label);
       add(flabel);
       //add(subLabel);
       add(boardLabel);
