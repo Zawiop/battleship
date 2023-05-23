@@ -20,7 +20,16 @@ public class FinalProjectDriver
    public static void main(String[] args)
    {
       
-      new finalDriverPanel();
+       JFrame frame = new JFrame("Battleship");
+      frame.setSize(1500, 600);
+      frame.setLocation(0, 0);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      
+
+      frame.setContentPane(new FinalPanel());
+      frame.setVisible(true);
+
+      
         
    }
 }

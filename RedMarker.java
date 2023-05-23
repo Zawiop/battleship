@@ -10,7 +10,7 @@
 
 
 
-public class whiteMarker extends Battleships{
+public class RedMarker extends Battleships{
    /**
    * Marker's x coordinate
    */
@@ -20,7 +20,7 @@ public class whiteMarker extends Battleships{
    * Marker's y coordinate
    */
       private int myY;
-      public whiteMarker(int x, int y)
+      public RedMarker(int x, int y)
       {
          myX = x;
          myY = y;

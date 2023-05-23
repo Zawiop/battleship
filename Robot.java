@@ -8,7 +8,7 @@
 
 
 
-public class robot
+public class Robot
 {
    /**
    * Simply marking where the ships are, for the robot's reference

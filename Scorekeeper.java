@@ -6,7 +6,7 @@
 	****************************************************************/
 
 
-public class scorekeeper
+public class Scorekeeper
 {
    /**
    * Stores the score variable

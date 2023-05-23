@@ -5,7 +5,7 @@
 	* @version 4/25/23
 	****************************************************************/
 
-public class soundEffects
+public class SoundEffects
 {
    /**
    * Plays a sound based on the argument that comes in

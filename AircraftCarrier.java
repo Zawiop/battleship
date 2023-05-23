@@ -13,21 +13,21 @@ import java.awt.image.BufferedImage;
 
 
 
-public class Cruiser extends Battleships{
+public class AircraftCarrier extends Battleships{
    
       static int[][] boundsArray;
       static int searched = 0;
       static String filename = "";
-      Image cruiser;
-      ImageIcon cruiserIcon;
-      public Cruiser(String fileName, int[][] bounds, int search)
+      Image carship;
+      ImageIcon carIcon;
+      public AircraftCarrier(String fileName, int[][] bounds, int search)
       {
         
          boundsArray = bounds;
          searched = search;
          filename = fileName;
-          cruiserIcon = new ImageIcon(fileName);
-          cruiser = cruiserIcon.getImage();
+          carIcon = new ImageIcon(fileName);
+          carship = carIcon.getImage();
 
       }
       
@@ -35,35 +35,36 @@ public class Cruiser extends Battleships{
    * Shows the boat at the specified coordinates on the panel
    */
       
-      public Object[] show(int carrierRotation, boolean left){
+      public Object[] show(int carShipRotation, boolean left){
          Image c2Scale;
          Image c2Scaled;
          String bounds = "0";
          String scaled = "0";
-         if(left == true &&  boundsArray[searched][0]+47 < 470){
+         if(left == true &&  boundsArray[searched][0]+142 < 470){
             
-               c2Scale = cruiserIcon.getImage();
-               c2Scaled = c2Scale.getScaledInstance(45, 140, java.awt.Image.SCALE_SMOOTH);
+               c2Scale = carIcon.getImage();
+               c2Scaled = c2Scale.getScaledInstance(240, 50, java.awt.Image.SCALE_SMOOTH);
                return new Object[]{c2Scaled, "0", "0"};
+               
    
          }
           else {
-            if(carrierRotation==1 && boundsArray[searched][1] + 47 < 470){
-               c2Scale = rotate(cruiserIcon, 90).getImage();
-               c2Scaled = c2Scale.getScaledInstance(140, 45, java.awt.Image.SCALE_SMOOTH);
+            if(carShipRotation==1 && boundsArray[searched][1] + 142 < 470){
+               c2Scale = rotate(carIcon, 90).getImage();
+               c2Scaled = c2Scale.getScaledInstance(50, 240, java.awt.Image.SCALE_SMOOTH);
                bounds = "-47";
-            } else if(carrierRotation==2 && boundsArray[searched][0] + 47 < 470){
-               c2Scale = rotate(rotate(cruiserIcon, 90),90).getImage();
-               c2Scaled = c2Scale.getScaledInstance(45, 140, java.awt.Image.SCALE_SMOOTH);
+            } else if(carShipRotation==2 && boundsArray[searched][0] + 142< 470){
+               c2Scale = rotate(rotate(carIcon, 90),90).getImage();
+               c2Scaled = c2Scale.getScaledInstance(240, 50, java.awt.Image.SCALE_SMOOTH);
                scaled = "47";
                bounds = "47";
-            } else if(carrierRotation == 3 && boundsArray[searched][1] + 47 < 470) {
-               c2Scale = rotate(rotate(rotate(cruiserIcon, 90),90),90).getImage();
-               c2Scaled = c2Scale.getScaledInstance(140, 45, java.awt.Image.SCALE_SMOOTH);
+            } else if(carShipRotation == 3 && boundsArray[searched][1] + 142 < 470) {
+               c2Scale = rotate(rotate(rotate(carIcon, 90),90),90).getImage();
+               c2Scaled = c2Scale.getScaledInstance(240, 50, java.awt.Image.SCALE_SMOOTH);
                scaled = "47";
-            }else if(carrierRotation == 4 &&  boundsArray[searched][0] + 47 < 470) {
-               c2Scale = cruiserIcon.getImage();
-               c2Scaled = c2Scale.getScaledInstance(45, 140, java.awt.Image.SCALE_SMOOTH);
+            }else if(carShipRotation == 4 &&  boundsArray[searched][0] + 142 < 470) {
+               c2Scale = carIcon.getImage();
+               c2Scaled = c2Scale.getScaledInstance(240, 50, java.awt.Image.SCALE_SMOOTH);
                scaled = "47";
                bounds = "47";
             } else {
