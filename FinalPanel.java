@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit;
  static int xClicked, yClicked, counterX, counterY, xCount;
  static int[][] boundsArray = new int[100][4];
  static JLabel boardLabel;
+ static JLabel boardLabel2;
  static JLabel d2label = new JLabel();
  static JLabel s2label = new JLabel();
  static JLabel c2label = new JLabel();
@@ -463,12 +464,11 @@ import java.util.concurrent.TimeUnit;
  
  
  public void gameStart() {
-    if(gameStarted == false) { 
        create();
        addMouseListener(
           new MouseAdapter() {
              public void mouseClicked(MouseEvent e) {
-              
+            if(gameStarted == false){
              if(selected == "destroyer"){
                 destroyerListener(e);
              } else if(selected == "carrier"){
@@ -480,9 +480,10 @@ import java.util.concurrent.TimeUnit;
                 battleshipListener(e);
              } else if(selected == "submarine"){
                 subListener(e);
-             } else {
-                
-             }
+             } else if(gameStarted == true){
+               startGame();
+            }
+            }
              }
                 
                 
@@ -494,11 +495,19 @@ import java.util.concurrent.TimeUnit;
           
           );
        
-          }
-          startGame();
+             
        }
        public void startGame() {
-       
+            frame.add(boardLabel);
+            frame.add(boardLabel2);
+            frame.add(d2label);
+            frame.add(c2label);
+            frame.add(carLabel);
+            frame.add(d2label);
+            frame.add(b2label);
+            
+            
+
        }
        public void create(){      
           JButton help = new JButton("Instructions Menu");
@@ -509,10 +518,10 @@ import java.util.concurrent.TimeUnit;
           set.addActionListener(new setShips());
           reset.addActionListener(new resetShips());
           deSelectShip.addActionListener(new deSelect());
-          set.setBounds(700, 50, 150, 25);
-          help.setBounds(700, 0, 150, 25);
-          reset.setBounds(700, 100, 150, 25);
-          deSelectShip.setBounds(900, 50, 150, 25);
+          set.setBounds(700, 5, 150, 25);
+          help.setBounds(700, 40, 150, 25);
+          reset.setBounds(700, 75, 150, 25);
+          deSelectShip.setBounds(700, 110, 150, 25);
           add(help);
           add(set);
           add(reset);
@@ -522,6 +531,9 @@ import java.util.concurrent.TimeUnit;
           boardLabel = new JLabel(board);
           boardLabel.setBounds(-20, -20, 640,640);
           //add(boardLabel);
+          
+          boardLabel2 = new JLabel(board);
+          boardLabel2.setBounds(900, -20, 640,640);
        
           ImageIcon sub = new ImageIcon("SubmarineNoBG.PNG");
           Image subScaling = sub.getImage();
@@ -589,6 +601,7 @@ import java.util.concurrent.TimeUnit;
           add(flabel);
           //add(subLabel);
           add(boardLabel);
+          add(boardLabel2);
           
        
        
@@ -599,14 +612,14 @@ import java.util.concurrent.TimeUnit;
           //gameStarted = true;
        }
  
- public void playGame(Graphics g) {
-    if(gameStarted == true) {
-       g.setColor(new Color(103,179,201));
-       g.drawRect(50,50,90,70);
-    }
+//  public void playGame(Graphics g) {
+//     if(gameStarted == true) {
+//        g.setColor(new Color(103,179,201));
+//        g.drawRect(50,50,90,70);
+//     }
     
  
- }
+//  }
  public void paintComponent(Graphics g) {
     super.paintComponent(g);
     //gameStart(g);
@@ -682,7 +695,8 @@ import java.util.concurrent.TimeUnit;
       int[][] allData = new int[][]{data1, data2, data3, data4, data5};
       System.out.println(Arrays.deepToString(allData).replace("], ", "]\n"));
 
-      frame.setVisible(false);
+      //rame.setVisible(false);
+      gameStarted = true;
       
       
     }  
