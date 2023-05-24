@@ -36,15 +36,31 @@ public class Submarine extends Battleships{
    */
       
       public Object[] show(int carrierRotation, boolean left){
+         int[][] locationShips = new int[10][10];
+
+         for(int i =0; i<9; i++){
+            for(int j = 0; j< 9; j++){
+               locationShips[i][j]=0;
+            }
+          }
          Image s2Scale;
          Image s2Scaled;
          String bounds = "0";
          String scaled = "0";
+         int or = 0;
+         int row = (int)Math.floor(searched/10);
+         int col = searched % 10;
          if(left == true &&  boundsArray[searched][0]+47 < 470){
             
             s2Scale = subIcon.getImage();
                s2Scaled = s2Scale.getScaledInstance(133, 46, java.awt.Image.SCALE_SMOOTH);
-               return new Object[]{s2Scaled, "0", "0"};
+               locationShips[row][col] = 1;
+               locationShips[row][col+1] = 1;
+               locationShips[row][col+2] = 1;
+               or = 0;
+               int[] data = new int[]{row, col, 3, or};
+
+               return new Object[]{s2Scaled, "0", "0",locationShips,data};
    
          }
           else {
@@ -52,29 +68,53 @@ public class Submarine extends Battleships{
                s2Scale = rotate(subIcon, 90).getImage();
                s2Scaled = s2Scale.getScaledInstance(46, 133, java.awt.Image.SCALE_SMOOTH);
                bounds = "-47";
+               locationShips[row][col] = 1;
+               locationShips[row][col+1] = 1;
+               locationShips[row][col+2] = 1;
+               or = 0;
+
             } else if(carrierRotation==2 && boundsArray[searched][0] + 47 < 470){
                s2Scale = rotate(rotate(subIcon, 90),90).getImage();
                s2Scaled = s2Scale.getScaledInstance(133, 46, java.awt.Image.SCALE_SMOOTH);
                scaled = "47";
                bounds = "47";
+               locationShips[row][col] = 1;
+               locationShips[row][col+1] = 1;
+               locationShips[row][col+2] = 1;
+               or = 0;
+
             } else if(carrierRotation == 3 && boundsArray[searched][1] + 47 < 470) {
                s2Scale = rotate(rotate(rotate(subIcon, 90),90),90).getImage();
                s2Scaled = s2Scale.getScaledInstance(46, 133, java.awt.Image.SCALE_SMOOTH);
                scaled = "47";
+               locationShips[row][col] = 1;
+               locationShips[row][col+1] = 1;
+               locationShips[row][col+2] = 1;
+               or = 0;
+
             }else if(carrierRotation == 4 &&  boundsArray[searched][0] + 47 < 470) {
                s2Scale = subIcon.getImage();
                s2Scaled = s2Scale.getScaledInstance(133, 46, java.awt.Image.SCALE_SMOOTH);
                scaled = "47";
                bounds = "47";
+               locationShips[row][col] = 1;
+               locationShips[row][col+1] = 1;
+               locationShips[row][col+2] = 1;
+               or = 0;
+
             } else {
                s2Scaled = null;
             }
 
          }
-         Object[] returning = new Object[3];
+         int[] data = new int[]{row, col, 3, or};
+
+         Object[] returning = new Object[5];
          returning[0] = s2Scaled;
          returning[1] = scaled;
          returning[2] = bounds;
+         returning[3] = locationShips;
+         returning[4] = data;
          return returning;
 
       }

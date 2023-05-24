@@ -36,15 +36,29 @@ public class Destroyer extends Battleships{
    */
       
       public Object[] show(int carrierRotation, boolean left){
+         int[][] locationShips = new int[10][10];
+
+         for(int i =0; i<9; i++){
+            for(int j = 0; j< 9; j++){
+               locationShips[i][j]=0;
+            }
+          }
          Image d2Scale;
          Image d2Scaled;
          String bounds = "0";
          String scaled = "0";
+         int row = (int)Math.floor(searched/10);
+         int col = searched % 10;
+         int or = 0;
          if(left == true &&  boundsArray[searched][0]+23 < 470){
             
             d2Scale = destroyIcon.getImage();
                d2Scaled = d2Scale.getScaledInstance(90, 30, java.awt.Image.SCALE_SMOOTH);
-               return new Object[]{d2Scaled, "0", "0"};
+               locationShips[row][col] = 1;
+               locationShips[row][col+1] = 1;
+               or = 0;
+               int[] data = new int[]{row, col, 2, or};
+               return new Object[]{d2Scaled, "0", "0", locationShips, data};
    
          }
           else {
@@ -52,29 +66,48 @@ public class Destroyer extends Battleships{
                d2Scale = rotate(destroyIcon, 90).getImage();
                d2Scaled = d2Scale.getScaledInstance(30, 90, java.awt.Image.SCALE_SMOOTH);
                bounds = "-24";
+               locationShips[row][col] = 1;
+               locationShips[row+1][col] = 1;
+               or = 1;
+
             } else if(carrierRotation==2 && boundsArray[searched][0] + 23 < 470){
                d2Scale = rotate(rotate(destroyIcon, 90),90).getImage();
                d2Scaled = d2Scale.getScaledInstance(90, 30, java.awt.Image.SCALE_SMOOTH);
                scaled = "47";
                bounds = "47";
+               locationShips[row][col] = 1;
+               locationShips[row][col+1] = 1;
+               or = 0;
+
             } else if(carrierRotation == 3 && boundsArray[searched][1] + 23 < 470) {
                d2Scale = rotate(rotate(rotate(destroyIcon, 90),90),90).getImage();
                d2Scaled = d2Scale.getScaledInstance(30, 90, java.awt.Image.SCALE_SMOOTH);
                scaled = "23";
+               locationShips[row][col] = 1;
+               locationShips[row+1][col] = 1;
+               or = 1;
+
             }else if(carrierRotation == 4 &&  boundsArray[searched][0] + 23 < 470) {
                d2Scale = destroyIcon.getImage();
                d2Scaled = d2Scale.getScaledInstance(90, 30, java.awt.Image.SCALE_SMOOTH);
                scaled = "47";
                bounds = "47";
+               locationShips[row][col+1] = 1;
+               locationShips[row][col+2] = 1;
+               or = 0;
+
             } else {
                d2Scaled = null;
             }
 
          }
-         Object[] returning = new Object[3];
+         int[] data = new int[]{row, col, 2, or};
+         Object[] returning = new Object[5];
          returning[0] = d2Scaled;
          returning[1] = scaled;
          returning[2] = bounds;
+         returning[3] = locationShips;
+         returning[4] = data;
          return returning;
 
       }
