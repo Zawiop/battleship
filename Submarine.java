@@ -63,7 +63,7 @@ public class Submarine extends Battleships{
                scaled = "47";
             }else if(carrierRotation == 4 &&  boundsArray[searched][0] + 47 < 470) {
                s2Scale = subIcon.getImage();
-               s2Scaled = s2Scale.getScaledInstance(133, 4, java.awt.Image.SCALE_SMOOTH);
+               s2Scaled = s2Scale.getScaledInstance(133, 46, java.awt.Image.SCALE_SMOOTH);
                scaled = "47";
                bounds = "47";
             } else {

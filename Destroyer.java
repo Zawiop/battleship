@@ -40,7 +40,7 @@ public class Destroyer extends Battleships{
          Image d2Scaled;
          String bounds = "0";
          String scaled = "0";
-         if(left == true &&  boundsArray[searched][0]+47 < 470){
+         if(left == true &&  boundsArray[searched][0]+23 < 470){
             
             d2Scale = destroyIcon.getImage();
                d2Scaled = d2Scale.getScaledInstance(90, 30, java.awt.Image.SCALE_SMOOTH);

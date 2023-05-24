@@ -103,4 +103,8 @@ public class AircraftCarrier extends Battleships{
          return new ImageIcon(rotatedImage);
       
       }
+<<<<<<< HEAD
 }   
+=======
+}   
+>>>>>>> 3da5cda4fc9ba96fe34cc9db3d23102980beae38

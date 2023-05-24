@@ -43,27 +43,28 @@ public class Cruiser extends Battleships{
          if(left == true &&  boundsArray[searched][0]+47 < 470){
             
                c2Scale = cruiserIcon.getImage();
-               c2Scaled = c2Scale.getScaledInstance(45, 140, java.awt.Image.SCALE_SMOOTH);
+               c2Scaled = c2Scale.getScaledInstance(140, 45, java.awt.Image.SCALE_SMOOTH);
                return new Object[]{c2Scaled, "0", "0"};
    
          }
           else {
             if(carrierRotation==1 && boundsArray[searched][1] + 47 < 470){
                c2Scale = rotate(cruiserIcon, 90).getImage();
-               c2Scaled = c2Scale.getScaledInstance(140, 45, java.awt.Image.SCALE_SMOOTH);
+               c2Scaled = c2Scale.getScaledInstance(45, 140, java.awt.Image.SCALE_SMOOTH);
                bounds = "-47";
             } else if(carrierRotation==2 && boundsArray[searched][0] + 47 < 470){
                c2Scale = rotate(rotate(cruiserIcon, 90),90).getImage();
-               c2Scaled = c2Scale.getScaledInstance(45, 140, java.awt.Image.SCALE_SMOOTH);
+               c2Scaled = c2Scale.getScaledInstance(140, 45, java.awt.Image.SCALE_SMOOTH);
                scaled = "47";
                bounds = "47";
             } else if(carrierRotation == 3 && boundsArray[searched][1] + 47 < 470) {
-               c2Scale = rotate(rotate(rotate(cruiserIcon, 90),90),90).getImage();
-               c2Scaled = c2Scale.getScaledInstance(140, 45, java.awt.Image.SCALE_SMOOTH);
+               c2Scale = (rotate(cruiserIcon, 270).getImage());
+               c2Scaled = c2Scale.getScaledInstance(45, 140, java.awt.Image.SCALE_SMOOTH);
                scaled = "47";
+               System.out.println("here");
             }else if(carrierRotation == 4 &&  boundsArray[searched][0] + 47 < 470) {
                c2Scale = cruiserIcon.getImage();
-               c2Scaled = c2Scale.getScaledInstance(45, 140, java.awt.Image.SCALE_SMOOTH);
+               c2Scaled = c2Scale.getScaledInstance(140, 45, java.awt.Image.SCALE_SMOOTH);
                scaled = "47";
                bounds = "47";
             } else {
