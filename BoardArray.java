@@ -2,7 +2,7 @@
 	* An array version of the scoreboard, used for comparisons and simple operations
    * Can access all values in this with methods, and set specific values
 	 
-	* @Rohan Singh, Fabeun Rahman and Arrush Shah
+	* @Author Rohan Singh, Fabeun Rahman and Arrush Shah
 	* @version 4/25/23
 	****************************************************************/
 
@@ -13,26 +13,22 @@ public class BoardArray {
    /**
    * The 2-d array that represents the scoreboard itself
    */
-
-    private int[][] scoreboard = new int[7][7];
+    private int[][] grid;
+    private int[][] shipDetails;
    /**
    * Takes a move that has happened, and is applied to the array itself
    */
-   public BoardArray() {
-      int i =0;
-      int j = 0;
-      while(i < 7) {
-         while(j < 7) {
-            scoreboard[i][j] = 0;
-            j++;
-         }
-         i++;
-      }
+   public BoardArray(int[][][] shipLoc) {
+      grid = shipLoc[0];
+      shipDetails = shipLoc[1];
    }
     
     public void setMove(int xofG, int yofG, int guess)
     {
-      scoreboard[xofG][yofG] = guess;
+      
+      
+      
+      //scoreboard[xofG][yofG] = guess;
       // 0 == no ship, not hit
       // 1 == no ship, hit
       // 2 == ship, no hit
@@ -44,13 +40,13 @@ public class BoardArray {
    * Checks if the selected position has a ship or not, simplifies lots of operations (false is a placeholder)
    */
     
-    public boolean isShip(int x, int y)
+    public boolean isHit(int x, int y)
     {
-      if(scoreboard[x][y] == 2 || scoreboard[x][y] == 3) {
+      if(grid[x][y] == 0 || grid[x][y] == 1)
+      {
+         return false;
+      } else{
          return true;
-      }
-      else {
-       return false;
       }
     }
     
@@ -59,7 +55,8 @@ public class BoardArray {
    */
     public int[][] getScoreboard()
     {
-      return scoreboard;
+      
+      return null;//scoreboard;
     }
     
     /**
@@ -67,9 +64,9 @@ public class BoardArray {
     */
     public void placeShape(int [][] values, int n)
     {
-      for(int i = 0; i < n; i++) {
-         scoreboard[values[i][0]][values[i][1]] = 2;
-      }
+      // for(int i = 0; i < n; i++) {
+      //    scoreboard[values[i][0]][values[i][1]] = 2;
+      // }
     }
     
 
